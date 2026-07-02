@@ -6,12 +6,12 @@
 
 Audit mobile app permission notes for broad access and missing justification. It solves review drift by turning plain-text plans into deterministic CI-friendly findings.
 
-## Input Contract 34
+## Input Contract
 
 Accepts mobile permission manifest. The reader supports plain text, JSON, JSONL, and CSV so the
 tool can fit into scripts, CI jobs, and review exports.
 
-## CLI Walkthrough 34
+## CLI Walkthrough
 
 ```bash
 python -m pip install -e ".[dev]"
@@ -20,7 +20,7 @@ mobile-permission-check examples/sample.txt --json --fail-on medium
 python -m mobile_permission_check --help
 ```
 
-## Rule Surface 34
+## Rule Surface
 
 | Rule | Severity | Meaning |
 |---|---:|---|
@@ -28,7 +28,7 @@ python -m mobile_permission_check --help
 | `always-location` | medium | always location permission requested |
 | `background-enabled` | low | background behavior enabled |
 
-## Validation Notes 34
+## Validation Notes
 
 ```bash
 ruff check .
