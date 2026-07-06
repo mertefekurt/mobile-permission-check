@@ -1,36 +1,29 @@
 # Mobile Permission Check
 
-Audit mobile app permission notes for broad access and missing justification.
+| Detail | Value |
+| --- | --- |
+| Area | developer tool |
+| Entry | `mobile-permission-check` |
+| Input | plain text |
+| Output | terminal findings, optional JSON |
 
-## First impression
+## Review notes
+
+- `missing-justification` - permission justification missing (high); state user-facing reason.
+- `always-location` - always location permission requested (medium); prefer when-in-use if possible.
+- `background-enabled` - background behavior enabled (low); verify need and disclosure.
 
 ![Mobile Permission Check cover](assets/readme-cover.svg)
 
-When this tool reports something, I want the finding to be boringly explicit: what matched, how severe it is, and what a reviewer should clean up.
+## Review path
 
-## Tripwires
+![Workflow diagram](assets/readme-diagram.svg)
 
-- `missing-justification` (high): permission justification missing. Fix: state user-facing reason.
-- `always-location` (medium): always location permission requested. Fix: prefer when-in-use if possible.
-- `background-enabled` (low): background behavior enabled. Fix: verify need and disclosure.
-
-## Runbook
+## Local check
 
 ```bash
 git clone https://github.com/mertefekurt/mobile-permission-check.git
 cd mobile-permission-check
-python -m venv .venv
-source .venv/bin/activate
 python -m pip install -e ".[dev]"
-```
-
-Then:
-
-```bash
 mobile-permission-check examples/sample.txt
-mobile-permission-check examples/sample.txt --json
 ```
-
-## Development note
-
-The policy lives in `rules.py`; parsing and rendering stay separate so the rule list is easy to audit.
